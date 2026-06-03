@@ -1,0 +1,4 @@
+allowBuilds:
+  sharp: true
+overrides:
+  enhanced-resolve: 5.22.1

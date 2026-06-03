@@ -1,0 +1,391 @@
+import { WooCommerceProduct } from "../types/woocommerce";
+
+// Mock data in the RAW WooCommerce REST API shape (GET /wp-json/wc/v3/products).
+//
+// These objects mirror exactly what the live store returns, so they flow
+// through the same convertProduct() pipeline as real data. When WooCommerce is
+// connected, nothing in the conversion / hook / component layers changes — only
+// the source of the bytes does. This also means the conversion code is
+// exercised from day one instead of only after going live.
+//
+// Field notes (kept faithful to the real API):
+//   - price / regular_price / sale_price are STRINGS ("29.99"), not numbers.
+//   - sale_price is "" when the product is not on sale.
+//   - category slugs use the Spanish slugs the store uses (camisetas, sudaderas,
+//     hoodies, tank-tops) so mapCategory() runs its real branches.
+//   - size/colour live in `attributes`, matched by name in convertProduct().
+//   - short_description is what the card shows; description is the long copy.
+const img = (src: string, id: number, alt: string) => [
+  { id, src, name: alt, alt },
+];
+
+export const mockWooCommerceProducts: WooCommerceProduct[] = [
+  {
+    id: 1,
+    name: "Classic White Tee",
+    slug: "classic-white-tee",
+    permalink: "https://example.com/product/classic-white-tee",
+    description:
+      "Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.",
+    short_description:
+      "Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.",
+    sku: "TEE-WHITE-001",
+    price: "29.99",
+    regular_price: "39.99",
+    sale_price: "29.99",
+    on_sale: true,
+    status: "publish",
+    featured: true,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 120,
+    manage_stock: true,
+    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    images: img(
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop",
+      101,
+      "Classic White Tee"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["XS", "S", "M", "L", "XL", "XXL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["White", "Black", "Gray"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 2,
+    name: "Oversized Hoodie",
+    slug: "oversized-hoodie",
+    permalink: "https://example.com/product/oversized-hoodie",
+    description:
+      "Cozy oversized hoodie made from organic cotton blend. Perfect for layering.",
+    short_description:
+      "Cozy oversized hoodie made from organic cotton blend. Perfect for layering.",
+    sku: "HOOD-OVR-002",
+    price: "79.99",
+    regular_price: "79.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: true,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 45,
+    manage_stock: true,
+    categories: [{ id: 12, name: "Hoodies", slug: "hoodies" }],
+    images: img(
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=500&fit=crop",
+      102,
+      "Oversized Hoodie"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["S", "M", "L", "XL", "XXL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["Black", "Navy", "Forest Green", "Cream"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 3,
+    name: "Crew Neck Sweatshirt",
+    slug: "crew-neck-sweatshirt",
+    permalink: "https://example.com/product/crew-neck-sweatshirt",
+    description: "Classic crew neck sweatshirt with ribbed collar and cuffs.",
+    short_description:
+      "Classic crew neck sweatshirt with ribbed collar and cuffs.",
+    sku: "SWT-CREW-003",
+    price: "59.99",
+    regular_price: "59.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: false,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 80,
+    manage_stock: true,
+    categories: [{ id: 11, name: "Sudaderas", slug: "sudaderas" }],
+    images: img(
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop",
+      103,
+      "Crew Neck Sweatshirt"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["XS", "S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["Gray", "Black", "White", "Navy"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 4,
+    name: "Vintage Tank Top",
+    slug: "vintage-tank-top",
+    permalink: "https://example.com/product/vintage-tank-top",
+    description: "Soft vintage-style tank top with a comfortable loose fit.",
+    short_description:
+      "Soft vintage-style tank top with a comfortable loose fit.",
+    sku: "TANK-VTG-004",
+    price: "24.99",
+    regular_price: "34.99",
+    sale_price: "24.99",
+    on_sale: true,
+    status: "publish",
+    featured: false,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 60,
+    manage_stock: true,
+    categories: [{ id: 13, name: "Camisetas de tirantes", slug: "tank-tops" }],
+    images: img(
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=500&fit=crop",
+      104,
+      "Vintage Tank Top"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["XS", "S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["White", "Black", "Dusty Pink", "Sage Green"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 5,
+    name: "Pocket Tee",
+    slug: "pocket-tee",
+    permalink: "https://example.com/product/pocket-tee",
+    description: "Relaxed fit t-shirt with chest pocket detail.",
+    short_description: "Relaxed fit t-shirt with chest pocket detail.",
+    sku: "TEE-PKT-005",
+    price: "34.99",
+    regular_price: "34.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: false,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 95,
+    manage_stock: true,
+    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    images: img(
+      "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400&h=500&fit=crop",
+      105,
+      "Pocket Tee"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["S", "M", "L", "XL", "XXL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["White", "Black", "Olive", "Burgundy"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 6,
+    name: "Zip-Up Hoodie",
+    slug: "zip-up-hoodie",
+    permalink: "https://example.com/product/zip-up-hoodie",
+    description:
+      "Full-zip hoodie with kangaroo pocket and adjustable drawstring.",
+    short_description:
+      "Full-zip hoodie with kangaroo pocket and adjustable drawstring.",
+    sku: "HOOD-ZIP-006",
+    price: "89.99",
+    regular_price: "89.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: true,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 30,
+    manage_stock: true,
+    categories: [{ id: 12, name: "Hoodies", slug: "hoodies" }],
+    images: img(
+      "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=500&fit=crop",
+      106,
+      "Zip-Up Hoodie"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["Black", "Gray", "Navy"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 7,
+    name: "Cropped Sweatshirt",
+    slug: "cropped-sweatshirt",
+    permalink: "https://example.com/product/cropped-sweatshirt",
+    description: "Trendy cropped sweatshirt with dropped shoulders.",
+    short_description: "Trendy cropped sweatshirt with dropped shoulders.",
+    sku: "SWT-CROP-007",
+    price: "49.99",
+    regular_price: "49.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: false,
+    catalog_visibility: "visible",
+    stock_status: "outofstock",
+    stock_quantity: 0,
+    manage_stock: true,
+    categories: [{ id: 11, name: "Sudaderas", slug: "sudaderas" }],
+    images: img(
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=500&fit=crop",
+      107,
+      "Cropped Sweatshirt"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["XS", "S", "M", "L"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["Pink", "Lavender", "Cream", "Light Gray"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+  {
+    id: 8,
+    name: "Basic Long Sleeve",
+    slug: "basic-long-sleeve",
+    permalink: "https://example.com/product/basic-long-sleeve",
+    description: "Essential long sleeve tee in soft cotton jersey.",
+    short_description: "Essential long sleeve tee in soft cotton jersey.",
+    sku: "TEE-LS-008",
+    price: "39.99",
+    regular_price: "39.99",
+    sale_price: "",
+    on_sale: false,
+    status: "publish",
+    featured: false,
+    catalog_visibility: "visible",
+    stock_status: "instock",
+    stock_quantity: 70,
+    manage_stock: true,
+    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    images: img(
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=500&fit=crop",
+      108,
+      "Basic Long Sleeve"
+    ),
+    attributes: [
+      {
+        id: 1,
+        name: "Talla",
+        position: 0,
+        visible: true,
+        variation: true,
+        options: ["XS", "S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Color",
+        position: 1,
+        visible: true,
+        variation: true,
+        options: ["White", "Black", "Navy", "Forest Green"],
+      },
+    ],
+    variations: [],
+    meta_data: [],
+  },
+];
