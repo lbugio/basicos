@@ -1,0 +1,96 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - button "Basicos, ir al inicio" [ref=e5]: Basicos
+        - navigation [ref=e6]:
+          - button "Todo" [ref=e7]
+          - button "Camisetas" [ref=e8]
+          - button "Sudaderas" [ref=e9]
+          - button "Hoodies" [ref=e10]
+          - button "Tank tops" [ref=e11]
+        - generic [ref=e13]:
+          - img
+          - searchbox "Buscar productos" [ref=e14]
+        - button "Abrir la cesta" [ref=e16]:
+          - img [ref=e17]
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: Esenciales, hechos para durar
+          - heading "Lo básico, sin lo básico." [level=1] [ref=e24]:
+            - text: Lo básico,
+            - text: sin lo básico.
+          - paragraph [ref=e25]: "Una colección corta de piezas que ya tienen su lugar en tu armario: algodón honesto, cortes que sientan bien y nada que sobre."
+          - generic [ref=e26]:
+            - button "Ver la colección" [ref=e27]:
+              - text: Ver la colección
+              - img [ref=e28]
+            - button "Lo nuevo en hoodies" [ref=e30]
+        - generic [ref=e31]:
+          - img "Perchero con prendas básicas en tonos neutros bajo luz natural" [ref=e33]
+          - generic [ref=e34]: est. 2025
+      - generic [ref=e35]:
+        - generic [ref=e37]:
+          - heading "Por categoría" [level=2] [ref=e38]
+          - button "Ver todo" [ref=e39]
+        - generic [ref=e40]:
+          - button "Camisetas Algodón peinado" [ref=e41]:
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - generic [ref=e45]: Camisetas
+                - generic [ref=e46]: Algodón peinado
+              - img [ref=e47]
+          - button "Sudaderas Felpa cepillada" [ref=e50]:
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - generic [ref=e54]: Sudaderas
+                - generic [ref=e55]: Felpa cepillada
+              - img [ref=e56]
+          - button "Hoodies Cortes oversize" [ref=e59]:
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: Hoodies
+                - generic [ref=e64]: Cortes oversize
+              - img [ref=e65]
+          - button "Tank tops Punto ligero" [ref=e68]:
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - generic [ref=e72]: Tank tops
+                - generic [ref=e73]: Punto ligero
+              - img [ref=e74]
+      - generic [ref=e78]:
+        - paragraph [ref=e79]: Nuestra forma de hacer
+        - paragraph [ref=e80]: Pocas piezas, bien hechas, pensadas para repetirse temporada tras temporada.
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - term [ref=e83]: Material
+            - definition [ref=e84]: Algodón orgánico y mezclas honestas. Sin trucos, sin etiquetas que prometen de más.
+          - generic [ref=e85]:
+            - term [ref=e86]: Corte
+            - definition [ref=e87]: Patrones probados en cuerpos reales hasta que sientan bien de verdad.
+          - generic [ref=e88]:
+            - term [ref=e89]: Ritmo
+            - definition [ref=e90]: Colecciones cortas. Reponemos lo que funciona en vez de inventar lo que no.
+      - generic [ref=e91]:
+        - heading "Empieza por lo esencial." [level=2] [ref=e92]:
+          - text: Empieza por lo
+          - generic [ref=e93]: esencial.
+        - button "Explorar la colección" [ref=e94]:
+          - text: Explorar la colección
+          - img [ref=e95]
+    - main [ref=e97]:
+      - generic [ref=e99]:
+        - heading "Toda la colección" [level=2] [ref=e100]
+        - generic [ref=e101]: 0 piezas
+      - paragraph [ref=e103]: No encontramos piezas para esta búsqueda.
+    - contentinfo [ref=e104]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - paragraph [ref=e107]: Basicos
+          - paragraph [ref=e108]: Esenciales atemporales para tu día a día. Calidad honesta, envío gratuito.
+        - generic [ref=e109]:
+          - button "Configurar WooCommerce" [ref=e110]
+          - generic [ref=e111]: © 2025 Basicos · Calidad garantizada
+  - button "Open Next.js Dev Tools" [ref=e117] [cursor=pointer]:
+    - img [ref=e118]

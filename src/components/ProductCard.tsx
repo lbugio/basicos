@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { stripHtml } from "../lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -66,10 +67,9 @@ export function ProductCard({
             <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
               {product.name}
             </h3>
-            <div 
-              className="text-sm text-muted-foreground line-clamp-2 mt-1"
-              dangerouslySetInnerHTML={{ __html: product.description }}
-            />
+            <div className="text-sm text-muted-foreground line-clamp-2 mt-1">
+              {stripHtml(product.description)}
+            </div>
           </div>
 
           {/* Colors */}

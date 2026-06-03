@@ -1,0 +1,280 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - heading "Basicos" [level=1] [ref=e7]
+        - navigation [ref=e8]:
+          - button "All" [ref=e9]
+          - button "T-Shirts" [ref=e10]
+          - button "Sweatshirts" [ref=e11]
+          - button "Hoodies" [ref=e12]
+          - button "Tank Tops" [ref=e13]
+        - generic [ref=e15]:
+          - img [ref=e16]
+          - textbox "Search products..." [ref=e19]
+        - button "1" [ref=e21]:
+          - img
+          - generic [ref=e22]: "1"
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: Esenciales, hechos para durar
+          - heading "Lo básico, sin lo básico." [level=1] [ref=e27]:
+            - text: Lo básico,
+            - text: sin lo básico.
+          - paragraph [ref=e28]: "Una colección corta de piezas que ya tienen su lugar en tu armario: algodón honesto, cortes que sientan bien y nada que sobre."
+          - generic [ref=e29]:
+            - button "Ver la colección" [ref=e30]:
+              - text: Ver la colección
+              - img [ref=e31]
+            - button "Lo nuevo en hoodies" [ref=e33]
+        - generic [ref=e34]:
+          - img "Perchero con prendas básicas en tonos neutros bajo luz natural" [ref=e36]
+          - generic [ref=e37]: est. 2025
+      - generic [ref=e38]:
+        - generic [ref=e40]:
+          - heading "Por categoría" [level=2] [ref=e41]
+          - button "Ver todo" [ref=e42]
+        - generic [ref=e43]:
+          - button "Camisetas Algodón peinado" [ref=e44]:
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: Camisetas
+                - generic [ref=e49]: Algodón peinado
+              - img [ref=e50]
+          - button "Sudaderas Felpa cepillada" [ref=e53]:
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - generic [ref=e57]: Sudaderas
+                - generic [ref=e58]: Felpa cepillada
+              - img [ref=e59]
+          - button "Hoodies Cortes oversize" [ref=e62]:
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - generic [ref=e66]: Hoodies
+                - generic [ref=e67]: Cortes oversize
+              - img [ref=e68]
+          - button "Tank tops Punto ligero" [ref=e71]:
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]: Tank tops
+                - generic [ref=e76]: Punto ligero
+              - img [ref=e77]
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - heading "Las que no nos cansamos de recomendar." [level=2] [ref=e82]:
+            - text: Las que no nos cansamos de
+            - generic [ref=e83]: recomendar
+            - text: .
+          - button "Toda la colección" [ref=e84]
+        - generic [ref=e85]:
+          - article [ref=e86]:
+            - button "Classic White Tee Oferta Classic White Tee 29,99 € Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear." [ref=e87]:
+              - generic [ref=e88]:
+                - img "Classic White Tee" [ref=e89]
+                - generic [ref=e90]: Oferta
+              - generic [ref=e91]:
+                - heading "Classic White Tee" [level=3] [ref=e92]
+                - generic [ref=e93]: 29,99 €
+              - paragraph [ref=e94]: Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.
+            - button "Añadir a la cesta" [ref=e95]:
+              - text: Añadir a la cesta
+              - img [ref=e96]
+          - article [ref=e98]:
+            - button "Oversized Hoodie Oversized Hoodie 79,99 € Cozy oversized hoodie made from organic cotton blend. Perfect for layering." [ref=e99]:
+              - img "Oversized Hoodie" [ref=e101]
+              - generic [ref=e102]:
+                - heading "Oversized Hoodie" [level=3] [ref=e103]
+                - generic [ref=e104]: 79,99 €
+              - paragraph [ref=e105]: Cozy oversized hoodie made from organic cotton blend. Perfect for layering.
+            - button "Añadir a la cesta" [ref=e106]:
+              - text: Añadir a la cesta
+              - img [ref=e107]
+          - article [ref=e109]:
+            - button "Zip-Up Hoodie Zip-Up Hoodie 89,99 € Full-zip hoodie with kangaroo pocket and adjustable drawstring." [ref=e110]:
+              - img "Zip-Up Hoodie" [ref=e112]
+              - generic [ref=e113]:
+                - heading "Zip-Up Hoodie" [level=3] [ref=e114]
+                - generic [ref=e115]: 89,99 €
+              - paragraph [ref=e116]: Full-zip hoodie with kangaroo pocket and adjustable drawstring.
+            - button "Añadir a la cesta" [ref=e117]:
+              - text: Añadir a la cesta
+              - img [ref=e118]
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: Nuestra forma de hacer
+        - paragraph [ref=e123]: Pocas piezas, bien hechas, pensadas para repetirse temporada tras temporada.
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - term [ref=e126]: Material
+            - definition [ref=e127]: Algodón orgánico y mezclas honestas. Sin trucos, sin etiquetas que prometen de más.
+          - generic [ref=e128]:
+            - term [ref=e129]: Corte
+            - definition [ref=e130]: Patrones probados en cuerpos reales hasta que sientan bien de verdad.
+          - generic [ref=e131]:
+            - term [ref=e132]: Ritmo
+            - definition [ref=e133]: Colecciones cortas. Reponemos lo que funciona en vez de inventar lo que no.
+      - generic [ref=e134]:
+        - heading "Empieza por lo esencial." [level=2] [ref=e135]:
+          - text: Empieza por lo
+          - generic [ref=e136]: esencial.
+        - button "Explorar la colección" [ref=e137]:
+          - text: Explorar la colección
+          - img [ref=e138]
+    - main [ref=e140]:
+      - generic [ref=e142]:
+        - heading "Toda la colección" [level=2] [ref=e143]
+        - generic [ref=e144]: 8 piezas
+      - generic [ref=e145]:
+        - generic [ref=e147] [cursor=pointer]:
+          - generic [ref=e148]:
+            - img "Classic White Tee" [ref=e149]
+            - generic [ref=e150]:
+              - generic [ref=e151]: Featured
+              - generic [ref=e152]: "-25%"
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - heading "Classic White Tee" [level=3] [ref=e155]
+              - generic [ref=e156]: Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.
+            - generic [ref=e157]:
+              - generic [ref=e158]: "Colors:"
+              - generic [ref=e159]:
+                - generic "White" [ref=e160]
+                - generic "Black" [ref=e161]
+                - generic "Gray" [ref=e162]
+            - generic [ref=e163]:
+              - generic [ref=e165]:
+                - generic [ref=e166]: $29.99
+                - generic [ref=e167]: $39.99
+              - button "Add to Cart" [ref=e168]
+        - generic [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]:
+            - img "Oversized Hoodie" [ref=e172]
+            - generic [ref=e174]: Featured
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - heading "Oversized Hoodie" [level=3] [ref=e177]
+              - generic [ref=e178]: Cozy oversized hoodie made from organic cotton blend. Perfect for layering.
+            - generic [ref=e179]:
+              - generic [ref=e180]: "Colors:"
+              - generic [ref=e181]:
+                - generic "Black" [ref=e182]
+                - generic "Navy" [ref=e183]
+                - generic "Forest Green" [ref=e184]
+                - generic "Cream" [ref=e185]
+            - generic [ref=e186]:
+              - generic [ref=e189]: $79.99
+              - button "Add to Cart" [ref=e190]
+        - generic [ref=e192] [cursor=pointer]:
+          - img "Crew Neck Sweatshirt" [ref=e194]
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - heading "Crew Neck Sweatshirt" [level=3] [ref=e197]
+              - generic [ref=e198]: Classic crew neck sweatshirt with ribbed collar and cuffs.
+            - generic [ref=e199]:
+              - generic [ref=e200]: "Colors:"
+              - generic [ref=e201]:
+                - generic "Gray" [ref=e202]
+                - generic "Black" [ref=e203]
+                - generic "White" [ref=e204]
+                - generic "Navy" [ref=e205]
+            - generic [ref=e206]:
+              - generic [ref=e209]: $59.99
+              - button "Add to Cart" [ref=e210]
+        - generic [ref=e212] [cursor=pointer]:
+          - generic [ref=e213]:
+            - img "Vintage Tank Top" [ref=e214]
+            - generic [ref=e216]: "-29%"
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - heading "Vintage Tank Top" [level=3] [ref=e219]
+              - generic [ref=e220]: Soft vintage-style tank top with a comfortable loose fit.
+            - generic [ref=e221]:
+              - generic [ref=e222]: "Colors:"
+              - generic [ref=e223]:
+                - generic "White" [ref=e224]
+                - generic "Black" [ref=e225]
+                - generic "Dusty Pink" [ref=e226]
+                - generic "Sage Green" [ref=e227]
+            - generic [ref=e228]:
+              - generic [ref=e230]:
+                - generic [ref=e231]: $24.99
+                - generic [ref=e232]: $34.99
+              - button "Add to Cart" [ref=e233]
+        - generic [ref=e235] [cursor=pointer]:
+          - img "Pocket Tee" [ref=e237]
+          - generic [ref=e238]:
+            - generic [ref=e239]:
+              - heading "Pocket Tee" [level=3] [ref=e240]
+              - generic [ref=e241]: Relaxed fit t-shirt with chest pocket detail.
+            - generic [ref=e242]:
+              - generic [ref=e243]: "Colors:"
+              - generic [ref=e244]:
+                - generic "White" [ref=e245]
+                - generic "Black" [ref=e246]
+                - generic "Olive" [ref=e247]
+                - generic "Burgundy" [ref=e248]
+            - generic [ref=e249]:
+              - generic [ref=e252]: $34.99
+              - button "Add to Cart" [ref=e253]
+        - generic [ref=e255] [cursor=pointer]:
+          - generic [ref=e256]:
+            - img "Zip-Up Hoodie" [ref=e257]
+            - generic [ref=e259]: Featured
+          - generic [ref=e260]:
+            - generic [ref=e261]:
+              - heading "Zip-Up Hoodie" [level=3] [ref=e262]
+              - generic [ref=e263]: Full-zip hoodie with kangaroo pocket and adjustable drawstring.
+            - generic [ref=e264]:
+              - generic [ref=e265]: "Colors:"
+              - generic [ref=e266]:
+                - generic "Black" [ref=e267]
+                - generic "Gray" [ref=e268]
+                - generic "Navy" [ref=e269]
+            - generic [ref=e270]:
+              - generic [ref=e273]: $89.99
+              - button "Add to Cart" [ref=e274]
+        - generic [ref=e276] [cursor=pointer]:
+          - generic [ref=e277]:
+            - img "Cropped Sweatshirt" [ref=e278]
+            - generic [ref=e280]: Out of Stock
+          - generic [ref=e281]:
+            - generic [ref=e282]:
+              - heading "Cropped Sweatshirt" [level=3] [ref=e283]
+              - generic [ref=e284]: Trendy cropped sweatshirt with dropped shoulders.
+            - generic [ref=e285]:
+              - generic [ref=e286]: "Colors:"
+              - generic [ref=e287]:
+                - generic "Pink" [ref=e288]
+                - generic "Lavender" [ref=e289]
+                - generic "Cream" [ref=e290]
+                - generic "Light Gray" [ref=e291]
+            - generic [ref=e292]:
+              - generic [ref=e295]: $49.99
+              - button "Add to Cart" [disabled]
+        - generic [ref=e297] [cursor=pointer]:
+          - img "Basic Long Sleeve" [ref=e299]
+          - generic [ref=e300]:
+            - generic [ref=e301]:
+              - heading "Basic Long Sleeve" [level=3] [ref=e302]
+              - generic [ref=e303]: Essential long sleeve tee in soft cotton jersey.
+            - generic [ref=e304]:
+              - generic [ref=e305]: "Colors:"
+              - generic [ref=e306]:
+                - generic "White" [ref=e307]
+                - generic "Black" [ref=e308]
+                - generic "Navy" [ref=e309]
+                - generic "Forest Green" [ref=e310]
+            - generic [ref=e311]:
+              - generic [ref=e314]: $39.99
+              - button "Add to Cart" [ref=e315]
+    - contentinfo [ref=e316]:
+      - generic [ref=e317]:
+        - generic [ref=e318]:
+          - paragraph [ref=e319]: Basicos
+          - paragraph [ref=e320]: Esenciales atemporales para tu día a día. Calidad honesta, envío gratuito.
+        - generic [ref=e321]:
+          - button "Configurar WooCommerce" [ref=e322]
+          - generic [ref=e323]: © 2025 Basicos · Calidad garantizada
+  - button "Open Next.js Dev Tools" [ref=e329] [cursor=pointer]:
+    - img [ref=e330]
+  - alert [ref=e333]
