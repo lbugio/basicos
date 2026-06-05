@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Search, ShoppingBag, Menu, X } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
 interface HeaderProps {
   cartItemCount: number;
@@ -11,10 +12,10 @@ interface HeaderProps {
 
 const CATEGORIES = [
   { id: "all", label: "Todo" },
-  { id: "t-shirts", label: "Camisetas" },
-  { id: "sweatshirts", label: "Sudaderas" },
+  { id: "t-shirts", label: "Remeras" },
+  { id: "sweatshirts", label: "Buzos" },
   { id: "hoodies", label: "Hoodies" },
-  { id: "tank-tops", label: "Tank tops" },
+  { id: "tank-tops", label: "Musculosas" },
 ];
 
 export function Header({
@@ -27,6 +28,7 @@ export function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isHydrated, setIsHydrated] = useState(false);
+  const { theme, toggleTheme, mounted: themeMounted } = useTheme();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -85,8 +87,40 @@ export function Header({
         <div className="flex flex-shrink-0 items-center gap-1">
           <button
             type="button"
+            onClick={toggleTheme}
+            aria-label={
+              theme === "dark"
+                ? "Cambiar a modo claro"
+                : "Cambiar a modo oscuro"
+            }
+            className="relative grid h-[44px] w-[44px] place-items-center rounded-full text-[var(--tw-ink)] transition-colors hover:text-[var(--tw-clay-deep)]"
+          >
+            {/* Cross-fade sol/luna. Antes de hidratar, opacidad neutra
+                para no afirmar un tema que el cliente podría contradecir. */}
+            <Sun
+              className={`absolute h-[1.2rem] w-[1.2rem] transition-[opacity,transform] duration-300 ${
+                themeMounted && theme === "dark"
+                  ? "rotate-0 opacity-100"
+                  : "-rotate-90 opacity-0"
+              }`}
+              strokeWidth={1.6}
+              aria-hidden="true"
+            />
+            <Moon
+              className={`absolute h-[1.2rem] w-[1.2rem] transition-[opacity,transform] duration-300 ${
+                !themeMounted || theme === "light"
+                  ? "rotate-0 opacity-100"
+                  : "rotate-90 opacity-0"
+              }`}
+              strokeWidth={1.6}
+              aria-hidden="true"
+            />
+          </button>
+
+          <button
+            type="button"
             onClick={onCartClick}
-            aria-label={`Abrir la cesta${
+            aria-label={`Abrir la bolsa${
               safeCartItemCount > 0 ? `, ${safeCartItemCount} artículos` : ""
             }`}
             className="relative grid h-[44px] w-[44px] place-items-center rounded-full text-[var(--tw-ink)] transition-colors hover:text-[var(--tw-clay-deep)]"

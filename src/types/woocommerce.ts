@@ -143,6 +143,7 @@ export interface Product {
   sizes: string[];
   colors: string[];
   inStock: boolean;
+  stockQuantity?: number;
   featured?: boolean;
   sku?: string;
   variations?: ProductVariation[];

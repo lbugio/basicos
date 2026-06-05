@@ -61,11 +61,10 @@ export function Cart({
       className="tw-landing fixed inset-0 z-50"
       role="dialog"
       aria-modal="true"
-      aria-label="Tu cesta"
+      aria-label="Tu bolsa"
     >
       <div
-        className="tw-veil absolute inset-0"
-        style={{ background: "oklch(0.22 0.015 50 / 0.38)" }}
+        className="tw-veil tw-veil-tint absolute inset-0"
         onClick={onClose}
       />
 
@@ -74,7 +73,7 @@ export function Cart({
         <header className="flex items-baseline justify-between px-7 pb-5 pt-7">
           <div className="flex items-baseline gap-3">
             <h2 className="text-[1.35rem] font-semibold tracking-[-0.01em]">
-              Tu cesta
+              Tu bolsa
             </h2>
             {totalItems > 0 && (
               <span className="text-[0.8rem] text-[var(--tw-ink-soft)]">
@@ -85,7 +84,7 @@ export function Cart({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar la cesta"
+            aria-label="Cerrar la bolsa"
             className="-mr-2.5 grid h-[44px] w-[44px] place-items-center rounded-full text-[var(--tw-ink-soft)] transition-colors hover:text-[var(--tw-ink)]"
           >
             <X className="h-[1.15rem] w-[1.15rem]" />
@@ -102,11 +101,11 @@ export function Cart({
           {cartItems.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center pb-16 text-center">
               <p className="tw-display text-[1.6rem] italic">
-                Todavía nada por aquí.
+                Todavía no hay nada acá.
               </p>
               <p className="mt-3 max-w-[26ch] text-[0.92rem] text-[var(--tw-ink-soft)]">
-                Las piezas que vayas eligiendo se guardan aquí mientras
-                decides.
+                Lo que vayas eligiendo se guarda en tu bolsa mientras lo
+                pensás.
               </p>
               <button
                 type="button"
@@ -167,7 +166,7 @@ export function Cart({
                           </span>
                           <button
                             type="button"
-                            aria-label="Añadir una unidad"
+                            aria-label="Sumar una unidad"
                             onClick={() =>
                               onUpdateQuantity(key, item.quantity + 1)
                             }
@@ -209,7 +208,7 @@ export function Cart({
               </span>
             </div>
             <p className="mb-5 text-[0.78rem] text-[var(--tw-ink-soft)]">
-              Impuestos incluidos. Envío gratuito.
+              Impuestos incluidos. El envío se calcula en el checkout.
             </p>
 
             <button
@@ -217,7 +216,7 @@ export function Cart({
               onClick={handleCheckout}
               className="group flex w-full items-center justify-center gap-2 rounded-full bg-[var(--tw-ink)] py-3.5 text-[0.92rem] font-medium text-[var(--tw-paper)] transition-colors hover:bg-[var(--tw-clay-deep)]"
             >
-              Tramitar pedido
+              Finalizar compra
               {!onCheckout && (
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               )}

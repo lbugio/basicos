@@ -49,6 +49,8 @@ class WooCommerceService {
         ...options.headers,
       },
       body: options.body,
+      // Permite cancelar la petición (búsquedas obsoletas por nuevo keystroke).
+      signal: options.signal,
     });
 
     if (!response.ok) {
@@ -95,6 +97,7 @@ class WooCommerceService {
       sizes: sizeAttribute?.options || ["S", "M", "L", "XL"],
       colors: colorAttribute?.options || ["Black", "White"],
       inStock: wcProduct.stock_status === "instock",
+      stockQuantity: wcProduct.stock_quantity ?? undefined,
       featured: wcProduct.featured,
       sku: wcProduct.sku,
     };
@@ -161,7 +164,8 @@ class WooCommerceService {
   async getProducts(
     page: number = 1,
     perPage: number = 20,
-    category?: string
+    category?: string,
+    signal?: AbortSignal
   ): Promise<Product[]> {
     try {
       if (!this.isConfigured()) {
@@ -182,7 +186,9 @@ class WooCommerceService {
         endpoint += `&category=${wcCategory}`;
       }
 
-      const wcProducts: WooCommerceProduct[] = await this.request(endpoint);
+      const wcProducts: WooCommerceProduct[] = await this.request(endpoint, {
+        signal,
+      });
       return wcProducts.map((product) => this.convertProduct(product));
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -237,14 +243,18 @@ class WooCommerceService {
   }
 
   // Search products
-  async searchProducts(query: string): Promise<Product[]> {
+  async searchProducts(
+    query: string,
+    signal?: AbortSignal
+  ): Promise<Product[]> {
     try {
       if (!this.isConfigured()) {
         throw new Error("WooCommerce not configured");
       }
 
       const wcProducts: WooCommerceProduct[] = await this.request(
-        `/products?search=${encodeURIComponent(query)}&status=publish`
+        `/products?search=${encodeURIComponent(query)}&status=publish`,
+        { signal }
       );
       return wcProducts.map((product) => this.convertProduct(product));
     } catch (error) {
@@ -254,10 +264,13 @@ class WooCommerceService {
   }
 
   // Add item to cart (requires WooCommerce Store API or custom endpoint)
+  // `snapshot` es el Product que el caller ya tiene; cuando llega, evita el
+  // round-trip a getProduct (el cart item solo usa name/sku/image/price).
   async addToCart(
     productId: string,
     quantity: number = 1,
-    variation?: { size?: string; color?: string }
+    variation?: { size?: string; color?: string },
+    snapshot?: Product
   ) {
     try {
       // This would typically use the WooCommerce Store API
@@ -293,9 +306,10 @@ class WooCommerceService {
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
-        // Try to get product details: live WooCommerce first, then mock.
-        let product;
-        if (this.isConfigured()) {
+        // El caller suele tener el producto a mano (lista/detalle): úsalo y
+        // evita la red. Solo si no llega snapshot caemos a fetch o mock.
+        let product: Product | null | undefined = snapshot;
+        if (!product && this.isConfigured()) {
           try {
             product = await this.getProduct(productId);
           } catch (error) {
@@ -478,7 +492,7 @@ class WooCommerceService {
           id: Math.floor(Math.random() * 10000),
           number: `ORD-${Date.now()}`,
           status: 'processing',
-          currency: 'EUR',
+          currency: 'ARS',
           total: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2),
           billing: checkoutData.billing,
           shipping: checkoutData.shipping,
@@ -515,7 +529,7 @@ class WooCommerceService {
           city: checkoutData.billing?.city || '',
           state: checkoutData.billing?.state || '',
           postcode: checkoutData.billing?.postalCode || '',
-          country: checkoutData.billing?.country || 'ES',
+          country: checkoutData.billing?.country || 'AR',
           email: checkoutData.billing?.email || '',
           phone: checkoutData.billing?.phone || '',
         },
@@ -527,7 +541,7 @@ class WooCommerceService {
           city: checkoutData.shipping?.city || checkoutData.billing?.city || '',
           state: checkoutData.shipping?.state || checkoutData.billing?.state || '',
           postcode: checkoutData.shipping?.postalCode || checkoutData.billing?.postalCode || '',
-          country: checkoutData.shipping?.country || checkoutData.billing?.country || 'ES',
+          country: checkoutData.shipping?.country || checkoutData.billing?.country || 'AR',
         },
         customer_note: checkoutData.customer_note || '',
         line_items: cartItems.map((item) => {

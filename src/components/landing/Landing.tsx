@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Product } from "@/types/woocommerce";
@@ -22,15 +23,15 @@ const CATEGORIES: {
 }[] = [
   {
     slug: "t-shirts",
-    label: "Camisetas",
+    label: "Remeras",
     count: "Algodón peinado",
     image:
       "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=900&q=80",
   },
   {
     slug: "sweatshirts",
-    label: "Sudaderas",
-    count: "Felpa cepillada",
+    label: "Buzos",
+    count: "Frisa cepillada",
     image:
       "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=900&q=80",
   },
@@ -43,10 +44,41 @@ const CATEGORIES: {
   },
   {
     slug: "tank-tops",
-    label: "Tank tops",
-    count: "Punto ligero",
+    label: "Musculosas",
+    count: "Punto liviano",
     image:
       "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
+// Contenido estático: hoistado para no recrearlo en cada render.
+const TRUST_SIGNALS = [
+  {
+    k: "Envío gratis desde $50.000",
+    v: "A todo el país por Correo Argentino y Andreani. Seguís tu pedido hasta la puerta, sin sorpresas.",
+  },
+  {
+    k: "Hasta 3 cuotas sin interés",
+    v: "Con todas las tarjetas vía Mercado Pago. También transferencia y débito.",
+  },
+  {
+    k: "Cambios sin drama, 30 días",
+    v: "¿No era tu talle? El primer cambio lo pagamos nosotros. Si no te convence, te devolvemos la plata.",
+  },
+];
+
+const CRAFT_PRINCIPLES = [
+  {
+    k: "Material",
+    v: "Algodón orgánico y mezclas honestas. Sin trucos, sin etiquetas que prometen de más.",
+  },
+  {
+    k: "Corte",
+    v: "Patrones probados en cuerpos reales hasta que sientan bien de verdad.",
+  },
+  {
+    k: "Ritmo",
+    v: "Colecciones cortas. Reponemos lo que funciona en vez de inventar lo que no.",
   },
 ];
 
@@ -58,7 +90,10 @@ export function Landing({
   onShopCategory,
   onShopAll,
 }: LandingProps) {
-  const featured = products.filter((p) => p.featured).slice(0, 3);
+  const featured = useMemo(
+    () => products.filter((p) => p.featured).slice(0, 3),
+    [products]
+  );
 
   return (
     <div className="tw-landing">
@@ -87,8 +122,9 @@ export function Landing({
             className="tw-rise mt-8 max-w-[42ch] text-[1.05rem] leading-relaxed text-[var(--tw-ink-soft)]"
             style={{ ["--d" as string]: "180ms" }}
           >
-            Una colección corta de piezas que ya tienen su lugar en tu armario:
-            algodón honesto, cortes que sientan bien y nada que sobre.
+            Pocas piezas, bien hechas: algodón que aguanta lavadas, cortes
+            probados en cuerpos reales y nada que sobre. Las usás todos los días
+            y duran años.
           </p>
 
           <div
@@ -133,6 +169,22 @@ export function Landing({
           >
             est. 2025
           </span>
+        </div>
+      </section>
+
+      {/* ---------- SEÑALES DE CONFIANZA ---------- */}
+      <section className="border-t border-[var(--tw-line)]">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 divide-y divide-[var(--tw-line)] px-5 sm:px-8 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-12">
+          {TRUST_SIGNALS.map((item) => (
+            <div key={item.k} className="py-7 md:px-8 md:first:pl-0 lg:py-9">
+              <h3 className="text-[0.95rem] font-semibold tracking-[-0.01em]">
+                {item.k}
+              </h3>
+              <p className="mt-2 max-w-[34ch] text-[0.88rem] leading-relaxed text-[var(--tw-ink-soft)]">
+                {item.v}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -254,7 +306,7 @@ export function Landing({
                     onClick={() => onAddToCart(product)}
                     className="mt-4 inline-flex items-center gap-2 text-[0.88rem] font-medium text-[var(--tw-clay-deep)] tw-link"
                   >
-                    Añadir a la cesta
+                    Sumar a la bolsa
                     <ArrowRight className="size-3.5" />
                   </button>
                 </article>
@@ -278,20 +330,7 @@ export function Landing({
           </p>
 
           <dl className="mt-16 grid gap-x-12 gap-y-10 border-t border-[var(--tw-paper)]/15 pt-12 sm:grid-cols-3">
-            {[
-              {
-                k: "Material",
-                v: "Algodón orgánico y mezclas honestas. Sin trucos, sin etiquetas que prometen de más.",
-              },
-              {
-                k: "Corte",
-                v: "Patrones probados en cuerpos reales hasta que sientan bien de verdad.",
-              },
-              {
-                k: "Ritmo",
-                v: "Colecciones cortas. Reponemos lo que funciona en vez de inventar lo que no.",
-              },
-            ].map((item) => (
+            {CRAFT_PRINCIPLES.map((item) => (
               <div key={item.k}>
                 <dt className="text-[0.82rem] uppercase tracking-[0.18em] text-[var(--tw-clay)]">
                   {item.k}
@@ -308,12 +347,16 @@ export function Landing({
       {/* ---------- CIERRE ---------- */}
       <section className="mx-auto max-w-[1400px] px-5 py-24 text-center sm:px-8 lg:px-12 lg:py-32">
         <h2 className="mx-auto max-w-[16ch] text-[clamp(2.2rem,6vw,5rem)] font-semibold leading-[0.98] tracking-[-0.03em]">
-          Empieza por lo
+          Empezá por lo
           <span className="tw-display text-[var(--tw-clay-deep)]">
             {" "}
             esencial.
           </span>
         </h2>
+        <p className="mx-auto mt-6 max-w-[40ch] text-[1rem] leading-relaxed text-[var(--tw-ink-soft)]">
+          Colecciones cortas: reponemos lo que funciona, pero los talles que
+          quedan no vuelven siempre. Si te gusta algo, es ahora.
+        </p>
         <button
           type="button"
           onClick={onShopAll}

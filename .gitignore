@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Playwright MCP temp output
 .playwright-mcp/
+.agents/product-marketing.md

@@ -22,17 +22,17 @@ const img = (src: string, id: number, alt: string) => [
 export const mockWooCommerceProducts: WooCommerceProduct[] = [
   {
     id: 1,
-    name: "Classic White Tee",
+    name: "Remera blanca clásica",
     slug: "classic-white-tee",
     permalink: "https://example.com/product/classic-white-tee",
     description:
-      "Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.",
+      "Remera de algodón premium con calce relajado. Ideal para todos los días.",
     short_description:
-      "Premium cotton t-shirt with a relaxed fit. Perfect for everyday wear.",
+      "Remera de algodón premium con calce relajado. Ideal para todos los días.",
     sku: "TEE-WHITE-001",
-    price: "29.99",
-    regular_price: "39.99",
-    sale_price: "29.99",
+    price: "29900",
+    regular_price: "39900",
+    sale_price: "29900",
     on_sale: true,
     status: "publish",
     featured: true,
@@ -40,16 +40,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "instock",
     stock_quantity: 120,
     manage_stock: true,
-    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    categories: [{ id: 10, name: "Remeras", slug: "remeras" }],
     images: img(
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop",
       101,
-      "Classic White Tee"
+      "Remera blanca clásica"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -69,16 +69,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 2,
-    name: "Oversized Hoodie",
+    name: "Hoodie oversize",
     slug: "oversized-hoodie",
     permalink: "https://example.com/product/oversized-hoodie",
     description:
-      "Cozy oversized hoodie made from organic cotton blend. Perfect for layering.",
+      "Hoodie oversize en mezcla de algodón orgánico. Abriga sin pesar.",
     short_description:
-      "Cozy oversized hoodie made from organic cotton blend. Perfect for layering.",
+      "Hoodie oversize en mezcla de algodón orgánico. Abriga sin pesar.",
     sku: "HOOD-OVR-002",
-    price: "79.99",
-    regular_price: "79.99",
+    price: "79900",
+    regular_price: "79900",
     sale_price: "",
     on_sale: false,
     status: "publish",
@@ -91,12 +91,12 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     images: img(
       "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=500&fit=crop",
       102,
-      "Oversized Hoodie"
+      "Hoodie oversize"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -116,15 +116,15 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 3,
-    name: "Crew Neck Sweatshirt",
+    name: "Buzo cuello redondo",
     slug: "crew-neck-sweatshirt",
     permalink: "https://example.com/product/crew-neck-sweatshirt",
-    description: "Classic crew neck sweatshirt with ribbed collar and cuffs.",
+    description: "Buzo cuello redondo con puños y cuello acanalados.",
     short_description:
-      "Classic crew neck sweatshirt with ribbed collar and cuffs.",
+      "Buzo cuello redondo con puños y cuello acanalados.",
     sku: "SWT-CREW-003",
-    price: "59.99",
-    regular_price: "59.99",
+    price: "59900",
+    regular_price: "59900",
     sale_price: "",
     on_sale: false,
     status: "publish",
@@ -133,16 +133,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "instock",
     stock_quantity: 80,
     manage_stock: true,
-    categories: [{ id: 11, name: "Sudaderas", slug: "sudaderas" }],
+    categories: [{ id: 11, name: "Buzos", slug: "buzos" }],
     images: img(
       "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop",
       103,
-      "Crew Neck Sweatshirt"
+      "Buzo cuello redondo"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -162,16 +162,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 4,
-    name: "Vintage Tank Top",
+    name: "Remera vintage",
     slug: "vintage-tank-top",
     permalink: "https://example.com/product/vintage-tank-top",
-    description: "Soft vintage-style tank top with a comfortable loose fit.",
+    description: "Remera de estilo vintage, suave y de calce amplio.",
     short_description:
-      "Soft vintage-style tank top with a comfortable loose fit.",
+      "Remera de estilo vintage, suave y de calce amplio.",
     sku: "TANK-VTG-004",
-    price: "24.99",
-    regular_price: "34.99",
-    sale_price: "24.99",
+    price: "24900",
+    regular_price: "34900",
+    sale_price: "24900",
     on_sale: true,
     status: "publish",
     featured: false,
@@ -179,16 +179,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "instock",
     stock_quantity: 60,
     manage_stock: true,
-    categories: [{ id: 13, name: "Camisetas de tirantes", slug: "tank-tops" }],
+    categories: [{ id: 13, name: "Remeras", slug: "tank-tops" }],
     images: img(
       "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=500&fit=crop",
       104,
-      "Vintage Tank Top"
+      "Remera vintage"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -208,13 +208,13 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 5,
-    name: "Pocket Tee",
+    name: "Remera con bolsillo",
     slug: "pocket-tee",
     permalink: "https://example.com/product/pocket-tee",
-    description: "Relaxed fit t-shirt with chest pocket detail.",
-    short_description: "Relaxed fit t-shirt with chest pocket detail.",
+    description: "Remera de calce relajado con bolsillo al pecho.",
+    short_description: "Remera de calce relajado con bolsillo al pecho.",
     sku: "TEE-PKT-005",
-    price: "34.99",
+    price: "34900",
     regular_price: "34.99",
     sale_price: "",
     on_sale: false,
@@ -224,16 +224,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "instock",
     stock_quantity: 95,
     manage_stock: true,
-    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    categories: [{ id: 10, name: "Remeras", slug: "remeras" }],
     images: img(
       "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400&h=500&fit=crop",
       105,
-      "Pocket Tee"
+      "Remera con bolsillo"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -253,16 +253,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 6,
-    name: "Zip-Up Hoodie",
+    name: "Hoodie con cierre",
     slug: "zip-up-hoodie",
     permalink: "https://example.com/product/zip-up-hoodie",
     description:
-      "Full-zip hoodie with kangaroo pocket and adjustable drawstring.",
+      "Hoodie con cierre completo, bolsillo canguro y cordón ajustable.",
     short_description:
-      "Full-zip hoodie with kangaroo pocket and adjustable drawstring.",
+      "Hoodie con cierre completo, bolsillo canguro y cordón ajustable.",
     sku: "HOOD-ZIP-006",
-    price: "89.99",
-    regular_price: "89.99",
+    price: "89900",
+    regular_price: "89900",
     sale_price: "",
     on_sale: false,
     status: "publish",
@@ -275,12 +275,12 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     images: img(
       "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=500&fit=crop",
       106,
-      "Zip-Up Hoodie"
+      "Hoodie con cierre"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -300,14 +300,14 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 7,
-    name: "Cropped Sweatshirt",
+    name: "Buzo cropped",
     slug: "cropped-sweatshirt",
     permalink: "https://example.com/product/cropped-sweatshirt",
-    description: "Trendy cropped sweatshirt with dropped shoulders.",
-    short_description: "Trendy cropped sweatshirt with dropped shoulders.",
+    description: "Buzo cropped con hombros caídos.",
+    short_description: "Buzo cropped con hombros caídos.",
     sku: "SWT-CROP-007",
-    price: "49.99",
-    regular_price: "49.99",
+    price: "49900",
+    regular_price: "49900",
     sale_price: "",
     on_sale: false,
     status: "publish",
@@ -316,16 +316,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "outofstock",
     stock_quantity: 0,
     manage_stock: true,
-    categories: [{ id: 11, name: "Sudaderas", slug: "sudaderas" }],
+    categories: [{ id: 11, name: "Buzos", slug: "buzos" }],
     images: img(
       "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=500&fit=crop",
       107,
-      "Cropped Sweatshirt"
+      "Buzo cropped"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,
@@ -345,14 +345,14 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
   },
   {
     id: 8,
-    name: "Basic Long Sleeve",
+    name: "Remera manga larga",
     slug: "basic-long-sleeve",
     permalink: "https://example.com/product/basic-long-sleeve",
-    description: "Essential long sleeve tee in soft cotton jersey.",
-    short_description: "Essential long sleeve tee in soft cotton jersey.",
+    description: "Remera de manga larga en jersey de algodón suave.",
+    short_description: "Remera de manga larga en jersey de algodón suave.",
     sku: "TEE-LS-008",
-    price: "39.99",
-    regular_price: "39.99",
+    price: "39900",
+    regular_price: "39900",
     sale_price: "",
     on_sale: false,
     status: "publish",
@@ -361,16 +361,16 @@ export const mockWooCommerceProducts: WooCommerceProduct[] = [
     stock_status: "instock",
     stock_quantity: 70,
     manage_stock: true,
-    categories: [{ id: 10, name: "Camisetas", slug: "camisetas" }],
+    categories: [{ id: 10, name: "Remeras", slug: "remeras" }],
     images: img(
       "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=500&fit=crop",
       108,
-      "Basic Long Sleeve"
+      "Remera manga larga"
     ),
     attributes: [
       {
         id: 1,
-        name: "Talla",
+        name: "Talle",
         position: 0,
         visible: true,
         variation: true,

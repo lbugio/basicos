@@ -1,10 +1,10 @@
-// Canonical price formatter for the Basicos storefront. Spanish locale, euros,
-// symbol after the amount ("29,99 €"), drops decimals on whole numbers.
-// Single source of truth so cart, checkout and landing never drift apart.
+// Formateador de precios canónico de Basicos. Locale argentino, pesos,
+// símbolo antes del importe ("$ 29.999"), sin decimales en montos enteros.
+// Única fuente de verdad para que carrito, checkout y landing nunca se desfasen.
 export function formatPrice(value: number): string {
-  return value.toLocaleString("es-ES", {
+  return value.toLocaleString("es-AR", {
     style: "currency",
-    currency: "EUR",
+    currency: "ARS",
     minimumFractionDigits: 0,
     maximumFractionDigits: value % 1 === 0 ? 0 : 2,
   });

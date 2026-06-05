@@ -1,6 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { wooCommerceService } from "../services/woocommerce";
 import { Product, CartItem } from "../types/woocommerce";
+
+function isAbortError(err: unknown): boolean {
+  return err instanceof DOMException && err.name === "AbortError";
+}
 
 export function useWooCommerce() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -9,14 +13,32 @@ export function useWooCommerce() {
   const [error, setError] = useState<string | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
 
+  // Cancela la petición en vuelo cuando llega una nueva (p. ej. otro keystroke).
+  const inFlightRef = useRef<AbortController | null>(null);
+  // Token monotónico: descarta respuestas obsoletas que resuelven fuera de
+  // orden, incluso las de mock data que no pasan por AbortController.
+  const requestIdRef = useRef(0);
+
   // Handle hydration
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
+  // Aborta cualquier petición en vuelo al desmontar.
+  useEffect(() => {
+    return () => inFlightRef.current?.abort();
+  }, []);
+
   // Load products
   const loadProducts = useCallback(
     async (category?: string, searchQuery?: string) => {
+      // Cancela la búsqueda anterior y abre token nuevo para esta.
+      inFlightRef.current?.abort();
+      const controller = new AbortController();
+      inFlightRef.current = controller;
+      const requestId = ++requestIdRef.current;
+      const isStale = () => requestId !== requestIdRef.current;
+
       setLoading(true);
       setError(null);
 
@@ -26,25 +48,32 @@ export function useWooCommerce() {
         if (wooCommerceService.isConfigured()) {
           if (searchQuery) {
             fetchedProducts = await wooCommerceService.searchProducts(
-              searchQuery
+              searchQuery,
+              controller.signal
             );
           } else {
             fetchedProducts = await wooCommerceService.getProducts(
               1,
               50,
-              category
+              category,
+              controller.signal
             );
           }
+          if (isStale()) return;
           setProducts(fetchedProducts);
         } else {
           // WooCommerce not configured: use mock data. getMockProducts runs the
           // same convertProduct() pipeline as the live API, so the shape is
           // identical to real WooCommerce data.
+          if (isStale()) return;
           setProducts(
             wooCommerceService.getMockProducts(category, searchQuery)
           );
         }
       } catch (err) {
+        // Cancelación esperada: la reemplazó una búsqueda más reciente.
+        if (isAbortError(err) || isStale()) return;
+
         const errorMessage =
           err instanceof Error ? err.message : "Error loading products";
         setError(errorMessage);
@@ -52,7 +81,8 @@ export function useWooCommerce() {
         // Fallback to mock data if a configured WooCommerce call fails.
         setProducts(wooCommerceService.getMockProducts(category, searchQuery));
       } finally {
-        setLoading(false);
+        // Solo la petición más reciente controla el spinner.
+        if (!isStale()) setLoading(false);
       }
     },
     []
@@ -111,10 +141,13 @@ export function useWooCommerce() {
         const selectedSize = size || product.sizes[0];
         const selectedColor = color || product.colors[0];
 
-        await wooCommerceService.addToCart(product.id, 1, {
-          size: selectedSize,
-          color: selectedColor,
-        });
+        // Pasa el producto que ya tenemos: evita un getProduct redundante.
+        await wooCommerceService.addToCart(
+          product.id,
+          1,
+          { size: selectedSize, color: selectedColor },
+          product
+        );
 
         // Reload cart
         loadCart();
